@@ -177,13 +177,15 @@ class matriz{
             let tdCorS = Array.from(tdSecundaria);
             let tdCoraux2 = tdCorS.filter((valor, chave, array)=>{
                 let aux = this.arrayLinhas.length - 1;
-                return ((chave == aux || chave %aux == 0) && chave !=0);
+                let aux2 = (this.arrayLinhas.length * this.arrayLinhas.length) -1;
+                
+                return chave % aux == 0 && chave !=0 && chave != aux2 || chave == aux;
             }).forEach((valor,indice,array)=>{
 
                 array[indice].style.backgroundColor = corSecundaria;
             })
 
-        });//eventListener      ((chave == aux || chave %aux == 0) && chave !=0)
+        });//eventListener      ((chave == aux || chave %aux == 0) && chave !=0)  (((chave == aux && chave != aux2-1)|| chave %aux == 0) && chave !=0)
         
     }
 
