@@ -155,6 +155,38 @@ class matriz{
 
     }
 
+    colorirPrincipal(){
+        const confirmarCor = document.getElementById('confirmarCor');
+        confirmarCor.addEventListener('click', ()=>{
+            const corPrincipal = document.getElementById('principal').value;
+            const corSecundaria = document.getElementById('secundaria').value;
+            console.log(corPrincipal,corSecundaria);
+            let tdPrincipal = document.querySelectorAll('td');
+
+            let tdCorP = Array.from(tdPrincipal);
+            
+            let tdCoraux = tdCorP.filter((valor,chave)=>{
+                let aux = this.arrayLinhas.length +1;
+                return chave %aux ==0;
+            }).forEach((valor, indice, array)=> {
+                array[indice].style.backgroundColor = corPrincipal;
+            });
+
+            let tdSecundaria = document.querySelectorAll('td');
+
+            let tdCorS = Array.from(tdSecundaria);
+            let tdCoraux2 = tdCorS.filter((valor, chave, array)=>{
+                let aux = this.arrayLinhas.length - 1;
+                return ((chave == aux || chave %aux == 0) && chave !=0);
+            }).forEach((valor,indice,array)=>{
+
+                array[indice].style.backgroundColor = corSecundaria;
+            })
+
+        });//eventListener      ((chave == aux || chave %aux == 0) && chave !=0)
+        
+    }
+
 
 }
 
@@ -162,6 +194,7 @@ let teste = new matriz();
 teste.verificaQuadrado();
 teste.alimentarTamanhoMatriz();
 teste.criarMatriz();
+teste.colorirPrincipal();
 //teste.preencherIndices();
 teste.limparArrays();
 
